@@ -4,7 +4,7 @@ if (!isset($_SESSION))
 
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 'true')
 {
-    session_destory();
+    session_destroy();
     header("Location: index.php");
 }
 ?>
