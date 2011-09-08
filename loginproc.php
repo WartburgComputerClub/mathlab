@@ -9,7 +9,7 @@ if ($_POST['username'] == 'admin')
 	session_start();
 	$_SESSION['user'] == 'admin';
 	echo("<script type='text/javscript'>");
-	echo("document.location = admin.php");
+	echo("window.location='admin.php'");
 	die("</script>");
       }
     else
