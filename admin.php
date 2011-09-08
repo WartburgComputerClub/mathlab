@@ -2,7 +2,6 @@
 session_start();
 include('checklogin.php');
 ?>
-<!doctype html>
 <html>
   <head>	
     <link rel="stylesheet" href="css/style.css" />
@@ -11,7 +10,8 @@ include('checklogin.php');
   <body>
     <div class="padded bodywrap">
       <h1>Admin Page</h1>
-      <a href="logout.php">[Logout]</a>
+      
+      <a href="adduser.php">[Add User]</a> <a href="logout.php">[Logout]</a>
     </div>
   </body>
 </html>

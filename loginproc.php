@@ -7,10 +7,8 @@ if ($_POST['username'] == 'admin')
     if ($_POST['password'] == 'test')
       {
 	session_start();
-	$_SESSION['user'] == 'admin';
-	echo("<script type='text/javscript'>");
-	echo("window.location='admin.php'");
-	die("</script>");
+	$_SESSION['user'] = 'admin';
+	die("admin");
       }
     else
       echo("<font color='red'>Incorrect login!</font>");
