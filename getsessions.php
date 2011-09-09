@@ -4,7 +4,7 @@ require_once('connect.php');
 
 $db = db_connect();
 $stmt = $db->stmt_init();
-if ($stmt->prepare("SELECT distinct DATE_FORMAT(id,'%d/%m/%Y') FROM session"))
+if ($stmt->prepare("SELECT distinct id FROM session ORDER BY id asc"))
 {
     $stmt->execute();
     $stmt->bind_result($date);
@@ -19,4 +19,5 @@ if ($stmt->prepare("SELECT distinct DATE_FORMAT(id,'%d/%m/%Y') FROM session"))
 }
 
 $db->close();
+die("</br>");
 ?>

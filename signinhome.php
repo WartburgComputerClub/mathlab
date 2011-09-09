@@ -10,11 +10,12 @@ require_once('checksignin.php');
   </head>
   <body>
     <div class="padded bodywrap">
-      <div class="content">
+
 	<h1>Choose a Session</h1>
 	<div id="sessions"></div>
 	<input type="button" value="Add Session" onclick="addsession()" />
-      </div>
+	<br /><br />
+	<a href="logout.php">[Logout]</a>
     </div>
   </body>
 </html>

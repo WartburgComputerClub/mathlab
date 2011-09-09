@@ -23,6 +23,8 @@ $date = $_GET['date'];
 	  <input type="submit" value="login" id="submit" value="Submit" />
 	</form>
       <div id="response"></div>
+      <br />
+      <a href="signinhome.php">[Home]</a> <a href="logout.php">[Logout]</a>
     </div>
   </body>
 </html>
