@@ -32,8 +32,8 @@ function save()
     inter = $('#interest').val();
     take = $('#taken').val();
     fute = $('#future').val();
-    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('addstudent.php',{firstname: first,lastname: last,interest: inter, taken: take,future: fute});
-    $('#flex').flexReload();
+    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('addstudent.php',{firstname: first,lastname: last,interest: inter, taken: take,future: fute},function(){$('#flex').flexReload();});
+
 }
 function update()
 {
@@ -43,8 +43,8 @@ function update()
     take = $('#taken').val();
     fute = $('#future').val();
     studentid = $('#studentid').val();
-    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('modifystudent.php',{id: studentid,firstname: first,lastname: last,interest: inter, taken: take,future: fute});
-    $('#flex').flexReload();
+    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('modifystudent.php',{id: studentid,firstname: first,lastname: last,interest: inter, taken: take,future: fute},function{$('#flex').flexReload();});
+
 }
 $(document).ready(function(){
     $('#flex').flexigrid({
