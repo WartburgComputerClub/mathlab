@@ -13,6 +13,16 @@ if ($_POST['username'] == 'admin')
     }
     else
 	echo("<font color='red'>Incorrect login!</font>");
+}else if ($_POST['username'] = 'signin')
+{
+    if ($_POST['password'] == 'test')
+    {
+	session_start();
+	$_SESSION['user'] = 'signin';
+	die('signin');
+    }
+    else
+	echo("<font color='red'>Incorrect login!</font>");
 }else
 {
     $db = db_connect();
