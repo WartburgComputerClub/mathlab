@@ -30,6 +30,13 @@ if (isset($_POST['rp'])) {
 // Setup sort and search SQL using posted dat
 $sortSql = "order by $sortname $sortorder";
 $searchSql = ($qtype != '' && $query != '') ? "where $qtype = '$query'" : '';
+
+$course = $_SESSION['user'];
+if (strlen($searchSql) > 0)
+    $searchSql .= " AND course=$course";
+else
+    $searchSql .= "WHERE course=$course";
+
 $sql = "SELECT count(*) FROM student $searchSql";
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
@@ -42,13 +49,13 @@ $data["page"] = $page;
 $data["total"] = $total;
 $data["rows"] = array();
 
-$sql = "SELECT id,firstname,lastname FROM student $searchSql $sortSql $limitSql";
+$sql = "SELECT id,firstname,lastname,interest,taken,future FROM student $searchSql $sortSql $limitSql";
 
 $result = mysql_query($sql);
 while($row = mysql_fetch_assoc($result))
 {
     $data["rows"][] = array("id" => $row['id'],
-			    "cell" => array($row['firstname'],$row['lastname']));
+			    "cell" => array($row['firstname'],$row['lastname'],$row['interest'],$row['taken'],$row['future']));
 }
 echo json_encode($data);	
 
