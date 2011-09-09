@@ -10,7 +10,7 @@ $stmt = $db->stmt_init();
 $username = $_POST['username'];
 $password = $_POST['password'];
 // First check if user already exists
-if ($stmt->prepare("SELECT FROM user where username=?"))
+if ($stmt->prepare("SELECT * FROM user where username=?"))
 {
     $stmt->bind_param('s',$username);
     $stmt->execute();
@@ -27,7 +27,7 @@ if ($stmt->prepare("SELECT FROM user where username=?"))
 $hash = md5($password);
 if ($stmt->prepare("INSERT INTO user (username,password) VALUES (?,?)"))
 {
-    $stmt->bind_param('ss',$username,$password);
+    $stmt->bind_param('ss',$username,$hash);
     $stmt->execute();
     $stmt->close();
 }
