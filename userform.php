@@ -51,8 +51,10 @@ if (isset($_POST['id']))
 <?php
     if (isset($_POST['id']))
     {
+	$studentid = $_POST['id'];
 ?>
 <input type="button" onclick="update()" value="Update" />
+<input type="hidden" id="studentid" value='<?php echo $studentid; ?>' />
 <?php
     }else{
 ?>

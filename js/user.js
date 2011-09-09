@@ -37,8 +37,14 @@ function save()
 }
 function update()
 {
-
-
+    first = $('#firstname').val();
+    last = $('#lastname').val();
+    inter = $('#interest').val();
+    take = $('#taken').val();
+    fute = $('#future').val();
+    studentid = $('#studentid').val();
+    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('modifystudent.php',{id: studentid,firstname: first,lastname: last,interest: inter, taken: take,future: fute});
+    $('#flex').flexReload();
 }
 $(document).ready(function(){
     $('#flex').flexigrid({
@@ -74,6 +80,13 @@ $(document).ready(function(){
 	singleSelect: true
     });
 
-
-
+    $('#flex').dblclick(function(e){
+	target = $(e.target);
+	
+	while(target.get(0).tagName != "TR"){
+	    target = target.parent();
+	}
+	var studentId = target.get(0).id.substr(3);
+	$('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',{id: studentId});
+    });
 });
