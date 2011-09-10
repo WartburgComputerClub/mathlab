@@ -1,5 +1,6 @@
 <?php
 require_once('checksignin.php');
+$date = date('Y-m-d');
 ?>
 <html>
   <head>	
@@ -13,8 +14,11 @@ require_once('checksignin.php');
 
 	<h1>Choose a Session</h1>
 	<div id="sessions"></div>
-	<input type="button" value="Add Session" onclick="addsession()" />
-	<br /><br />
+	<div id="response"></div>
+	<input type="hidden" value="<?php echo $date; ?>" id="today" />
+	<input type="button" value="Add Session" onclick="addSession()" />
+	<br />
+	<br />
 	<a href="logout.php">[Logout]</a>
     </div>
   </body>

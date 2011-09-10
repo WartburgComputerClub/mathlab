@@ -15,6 +15,9 @@ if ($stmt->prepare("SELECT distinct id FROM session ORDER BY id asc"))
 	echo("</a>");
 	echo('<br />');
     }
+    if (!isset($date))
+	$date = '2010-03-01'; // This shouldn't be a problem unless a time machine is invented
+    echo("<input type='hidden' id='last' value=\"$date\" />"); 
     $stmt->close();
 }
 

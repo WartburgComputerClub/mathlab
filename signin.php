@@ -14,13 +14,14 @@ $date = $_GET['date'];
     <div class="padded bodywrap">
       <h1>Sign-in Page (<?php echo $date; ?>)</h1>
 	<form id="signin" name="signin" method="post">
+	  <input type="hidden" id="today" value="<?php echo $date; ?>" />
 	  First Name <br />
 	  <input type="text" id="firstname" />
 	  <br />
 	  Last Name <br />
 	  <input type="text" id="lastname" />
 	  <br />
-	  <input type="submit" value="login" id="submit" value="Submit" />
+	  <input type="submit" value="Signin" id="submit" value="Submit" />
 	</form>
       <div id="response"></div>
       <br />
