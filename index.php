@@ -19,6 +19,7 @@
 	  <input type="submit" value="login" id="submit" value="Submit" />
 	</form>
       <div id="response"></div>
+      <img src="images/loader-bar.gif" id="loading">
     </div>
   </body>
 </html>

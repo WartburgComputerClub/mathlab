@@ -92,6 +92,6 @@ $(document).ready(function(){
 	    target = target.parent();
 	}
 	var studentId = target.get(0).id.substr(3);
-	$('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',{id: studentId});
+	$('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',{id: studentId},function(){scrollForm();});
     });
 });
