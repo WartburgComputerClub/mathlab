@@ -13,7 +13,7 @@ if ($_POST['username'] == 'admin')
     }
     else
 	echo("<font color='red'>Incorrect login!</font>");
-}else if ($_POST['username'] = 'signin')
+}else if ($_POST['username'] == 'signin')
 {
     if ($_POST['password'] == 'test')
     {

@@ -2,14 +2,14 @@ function doCommand(com,grid)
 {
     if (com == "Add")
     {
-	$('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',function(){$('#firstname').focus();});
+	$('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',function(){$('#firstname').focus();scrollForm();});
     }
     if (com == 'Edit')
     {
 	$('.trSelected',grid).each(function(){
 	    var studentId = $(this).attr('id');
 	    studentId = studentId.substring(studentId.lastIndexOf('row')+3);
-	    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',{id: studentId});
+	    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('userform.php',{id: studentId},function(){scrollForm();});
 	});
     }
     if (com == 'Delete')
@@ -20,6 +20,11 @@ function doCommand(com,grid)
 	    $('#formspace').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('deletestudent.php',{id: studentId},function(){$('#flex').flexReload();});
 	});
     }
+}
+function scrollForm()
+{
+    $('html,body').animate({
+	scrollTop: $('#formspace').offset().top},'slow');
 }
 function cancel()
 {
