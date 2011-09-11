@@ -30,7 +30,7 @@ background: url("flexstyle/images/add.png") no-repeat scroll left center transpa
       <h1>User Dashboard</h1>
       <div id="flex" class="flexigrid"></div>
       <div id="formspace"></div>
-      <a href="editclass.php">[Edit Class]</a> <a href="logout.php">[Logout]</a>
+      <a href="editclass.php">[Edit Class]</a> <a href="sessions.php">[Sessions]</a> <a href="logout.php">[Logout]</a>
     </div>
   </body>
 </html>
