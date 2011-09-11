@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="padded bodywrap">
-      <h1>Advanced Lab Login</h1>
+      <h1>Advanced Math Lab Login</h1>
 	<form id="login" name="login" method="post">
           Username <br />
           <input name="username" type="text" id="user" />
