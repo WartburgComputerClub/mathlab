@@ -7,8 +7,8 @@ $(document).ready(function(){
 	    $('#response').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('signinproc.php',{firstname: $('#firstname').val(),lastname: $('#lastname').val(),date: $('#today').val()},function(response){
 		if (response.indexOf('green') > 0)
 		{
-		    $('#firstname').empty();
-		    $('#lastname').empty();
+		    $('#firstname').val('');
+		    $('#lastname').val('');
 		    $('#firstname').focus();
 		}
 	    });	    
