@@ -65,7 +65,7 @@ $db->close();
       <h1>Class Editor</h1>
       <div class="content">
 	<form name="editclassform" method="post">
-	<table border='0'>
+	<table border="0" align="center">
 	  <tr>
 	    <td>Professor: </td>
 	    <td><input type="text" value='<?php echo $prof; ?>' name="prof" /></td>
@@ -86,8 +86,9 @@ $db->close();
 	    <td>First Exam Date: </td>
 	    <td><input type="text" disabled="disabled" name="section" value='<?php echo $exam; ?>' /></td>
 	  </tr>
+	  <tr><td><input type="submit" value="submit" /></td><td></td></tr>
 	</table>
-	<input type="submit" value="submit" />
+	
 	</form>
       </div>
       <a href="user.php">[Back]</a> <a href="logout.php">[Logout]</a>
