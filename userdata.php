@@ -54,6 +54,11 @@ $sql = "SELECT id,firstname,lastname,interest,taken,future FROM student $searchS
 $result = mysql_query($sql);
 while($row = mysql_fetch_assoc($result))
 {
+    if ($row['taken'] == 1)
+	$row['taken'] = 'Yes';
+    else
+	$row['taken'] = 'No';
+
     $data["rows"][] = array("id" => $row['id'],
 			    "cell" => array($row['firstname'],$row['lastname'],$row['interest'],$row['taken'],$row['future']));
 }

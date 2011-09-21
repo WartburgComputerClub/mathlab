@@ -22,6 +22,11 @@ if (isset($_POST['id']))
     }
     $db->close();
 }
+if ($taken == 1)
+    $taken = 'Yes';
+else
+    $taken = 'No';
+
 ?>
 <form>
   <table border="0">
@@ -40,7 +45,6 @@ if (isset($_POST['id']))
     <tr>
       <td>Taken Before? </td>
       <td><input type="text" id="taken" value='<?php echo $taken; ?>' /></td>
-      <td>(0 for no, 1 for yes)</td>
     </tr>
     <tr>
       <td>Future Plans: </td>
