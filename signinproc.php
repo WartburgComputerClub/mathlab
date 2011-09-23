@@ -25,8 +25,13 @@ if ($stmt->prepare("SELECT id FROM student WHERE firstname=? AND lastname=?") &&
 	{
 	    $stmt1->execute();
 	    $stmt1->store_result();
-	    $stmt1->fetch();
-	    if ($sessionId == $date)
+	    $error = false;
+	    while ($stmt1->fetch())
+	    {
+		if ($sessionId == $date)
+		    $error = true;
+	    }
+	    if ($error)
 	    {
 		$stmt->free_result();
 		$stmt->close();
