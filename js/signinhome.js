@@ -9,5 +9,10 @@ function addSession()
 }
 $(document).ready(function(){
     $('#sessions').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('getsessions.php');
-    
+       $('#today').datepicker({
+	//changeMonth: true,
+	//changeYear: true,
+	dateFormat: 'yy-mm-dd'
+    });
+ 
 });
