@@ -56,8 +56,27 @@ $stmt->close();
 $db->close();
 ?>
 <html>
-  <head>	
+  <head>
     <link rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/dark-hive/jquery-ui-1.8.16.custom.css" />
+    <style>
+      div.ui-datepicker{
+      font-size:10px;
+      }
+
+    </style>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+	$('#datepicker').datepicker({
+	    //changeMonth: true,
+	    //changeYear: true,
+	    dateFormat: 'yy-mm-dd'
+	});
+    });
+    </script>
     <title>Class Editor</title>
   </head>
   <body>
@@ -84,11 +103,11 @@ $db->close();
 	  </tr>
 	  <tr>
 	    <td>First Exam Date: </td>
-	    <td><input type="text" disabled="disabled" name="section" value='<?php echo $exam; ?>' /></td>
+	    <td><input type="text" id="datepicker" name="exam" value='<?php echo $exam; ?>' /></td>
 	  </tr>
 	  <tr><td><input type="submit" value="submit" /></td><td></td></tr>
 	</table>
-	
+
 	</form>
       </div>
       <a href="user.php">[Back]</a> <a href="logout.php">[Logout]</a>
