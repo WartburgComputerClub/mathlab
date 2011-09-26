@@ -30,7 +30,10 @@ background: url("flexstyle/images/add.png") no-repeat scroll left center transpa
       <h1>User Dashboard</h1>
       <div id="flex" class="flexigrid"></div>
       <div id="formspace"></div>
-      <a href="editclass.php">[Edit Class]</a> <a href="sessions.php">[Sessions]</a> <a href="logout.php">[Logout]</a>
+      <form id="form" action="genexcel.php" method="POST">
+	<input type="submit" id="hiddenSubmit" style="display: none;" />
+      </form>
+      <a href="editclass.php">[Edit Class]</a> <a href="sessions.php">[Sessions]</a> <a href="#" id="excel">[Gen Excel]</a> <a href="logout.php">[Logout]</a>
     </div>
   </body>
 </html>

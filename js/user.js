@@ -84,7 +84,10 @@ $(document).ready(function(){
 	height: 390,
 	singleSelect: true
     });
-
+    $('#excel').click(function(e){
+	e.preventDefault();
+	$('#hiddenSubmit').click();
+    });
     $('#flex').dblclick(function(e){
 	target = $(e.target);
 	
