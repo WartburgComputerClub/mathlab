@@ -10,18 +10,35 @@ $user = $_SESSION['user'];
 $objReader = PHPExcel_IOFactory::createReader('Excel5');   
 $excel = $objReader->load('sheet.xls');
 // Get first exam date
-$sql = "SELECT `exam` FROM `course` WHERE `id`=$user";
+$sql = "SELECT `exam`,department,code,section,prof FROM `course` WHERE `id`=$user";
 $result = mysql_query($sql);
 $row = mysql_fetch_row($result);
 $exam = $row[0];
+$prof = $row[4];
+$department = $row[1];
+$code = $row[2];
+$section = $row[3];
+$year = Date('Y');
 
 
 $excel->setActiveSheetIndex(0);
 $worksheet = $excel->getActiveSheet();
+$worksheet->setCellValueByColumnAndRow(7,5,$exam);
+$worksheet->setCellValueByColumnAndRow(6,4,$prof);
+$worksheet->setCellValueByColumnAndRow(6,2,$year);
+$worksheet->setCellValueByColumnAndRow(8,2,$department);
+$worksheet->setCellValueByColumnAndRow(9,2,$code);
+$worksheet->setCellValueByColumnAndRow(10,2,$section);
+
+$sql = "SELECT distinct id FROM session";
+$result = mysql_query($sql);
+$worksheet->setCellValueByColumnAndRow(12,5,mysql_num_rows($result));
+
 $sql = "SELECT id,lastname,firstname,interest,taken,future FROM student WHERE course=$user";
 $sql1 = "SELECT * FROM session WHERE student=? AND date < ?";
 $sql2 = "SELECT * FROM session WHERE student=?";
 $result = mysql_query("SELECT id,lastname,firstname,interest,taken,future FROM student WHERE course=$user");
+
 $row =8;
 while ($row1 = mysql_fetch_row($result))
 {
