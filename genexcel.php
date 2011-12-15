@@ -10,8 +10,8 @@ $user = $_SESSION['user'];
 $objReader = PHPExcel_IOFactory::createReader('Excel5');   
 $excel = $objReader->load('sheet.xls');
 // Get first exam date
-$sql = "SELECT `exam`,department,code,section,prof FROM `course` WHERE `id`=$user";
-$sem_split = '2011-10-23';
+$sql = "SELECT `exam`,department,code,section,prof,halftime FROM `course` WHERE `id`=$user";
+$sem_split = $row['5'];
 $result = mysql_query($sql);
 $row = mysql_fetch_row($result);
 $exam = $row[0];

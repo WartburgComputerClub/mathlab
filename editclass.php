@@ -8,6 +8,7 @@ $code = '';
 $code = '';
 $section = '';
 $exam = '';
+$halftime = '';
 $db = db_connect();
 $stmt = $db->stmt_init();
 
@@ -26,16 +27,16 @@ if (isset($_POST['prof']))
 
     if ($update)
     {
-	if ($stmt->prepare("UPDATE course SET department=?,code=?,section=?,exam=?,prof=? WHERE id=?"))
+	if ($stmt->prepare("UPDATE course SET department=?,code=?,section=?,exam=?,halftime=?,prof=? WHERE id=?"))
 	{
-	    $stmt->bind_param('siissi',$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['prof'],$_SESSION['user']);
+	    $stmt->bind_param('siisssi',$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['halftime'],$_POST['prof'],$_SESSION['user']);
 	    $stmt->execute();
 	}
     }else
     {
-	if ($stmt->prepare("INSERT INTO course (id,department,code,section,exam,prof) VALUES (?,?,?,?,?,?)"))
+	if ($stmt->prepare("INSERT INTO course (id,department,code,section,exam,halftime,prof) VALUES (?,?,?,?,?,?,?)"))
 	{
-	    $stmt->bind_param('isiiss',$_SESSION['user'],$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['prof']);
+	    $stmt->bind_param('isiisss',$_SESSION['user'],$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['halftime'],$_POST['prof']);
 	    $stmt->execute();
 
 	}
@@ -43,11 +44,11 @@ if (isset($_POST['prof']))
 
 }
 
-if ($stmt->prepare("SELECT prof,department,code,section,exam FROM course WHERE id=?"))
+if ($stmt->prepare("SELECT prof,department,code,section,exam,halftime FROM course WHERE id=?"))
 {
     $stmt->bind_param('i',$_SESSION['user']);
     $stmt->execute();
-    $stmt->bind_result($prof,$department,$code,$section,$exam);
+    $stmt->bind_result($prof,$department,$code,$section,$exam,$halftime);
     $stmt->fetch();
 }
 
@@ -70,7 +71,7 @@ $db->close();
     <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-	$('#datepicker').datepicker({
+	$('.datepicker').datepicker({
 	    //changeMonth: true,
 	    //changeYear: true,
 	    dateFormat: 'yy-mm-dd'
@@ -103,8 +104,11 @@ $db->close();
 	  </tr>
 	  <tr>
 	    <td>First Exam Date: </td>
-	    <td><input type="text" id="datepicker" name="exam" value='<?php echo $exam; ?>' /></td>
+	    <td><input type="text" class="datepicker" name="exam" value='<?php echo $exam; ?>' /></td>
 	  </tr>
+	  <tr>
+	    <td>Second Seven Weeks Start</td>
+	    <td><input type="text" class="datepicker" name="halftime" value='<?php echo $halftime; ?>' /></td>
 	  <tr><td><input type="submit" value="submit" /></td><td></td></tr>
 	</table>
 
