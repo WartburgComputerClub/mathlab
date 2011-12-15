@@ -1,17 +1,15 @@
 <?php
 session_start();
 include('checklogin.php');
+
+require 'libs/Smarty.class.php';
+$smarty = new Smarty;
+//$smarty->force_compile = true;
+//$smarty->debugging = true;
+$smarty->caching = true;
+$smarty->cache_lifetime = 120;
+
+$smarty->assign('title','Admin Page');
+$smarty->display('admin.tpl');
+
 ?>
-<html>
-  <head>	
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Admin Page</title>
-  </head>
-  <body>
-    <div class="padded bodywrap">
-      <h1>Admin Page</h1>
-      
-      <a href="adduser.php">[Add User]</a> <a href="logout.php">[Logout]</a>
-    </div>
-  </body>
-</html>

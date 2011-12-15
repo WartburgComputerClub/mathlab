@@ -1,25 +1,12 @@
-<html>
-  <head>	
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Advanced Math Lab</title>
-    <script type="text/javascript" src="js/jquery.js"></script> 
-    <script type="text/javascript" src="js/login.js"></script> 
-  </head>
-  <body>
-    <div class="padded bodywrap">
-      <h1>Advanced Math Lab Login</h1>
-	<form id="login" name="login" method="post">
-          Username <br />
-          <input name="username" type="text" id="user" />
-	  <br />
-	  Password
-	  <br />	  
-	  <input name="password" type="password" id="pass" />
-	  <br />
-	  <input type="submit" value="login" id="submit" value="Submit" />
-	</form>
-      <div id="response"></div>
-      <img src="images/loader-bar.gif" id="loading">
-    </div>
-  </body>
-</html>
+<?php
+require 'libs/Smarty.class.php';
+
+$smarty = new Smarty;
+//$smarty->force_compile = true;
+//$smarty->debugging = true;
+$smarty->caching = true;
+$smarty->cache_lifetime = 120;
+
+$smarty->assign('title','Advanced Math Lab');
+$smarty->display('index.tpl');
+?>
