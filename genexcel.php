@@ -11,6 +11,7 @@ $objReader = PHPExcel_IOFactory::createReader('Excel5');
 $excel = $objReader->load('sheet.xls');
 // Get first exam date
 $sql = "SELECT `exam`,department,code,section,prof FROM `course` WHERE `id`=$user";
+$sem_split = '2011-10-23';
 $result = mysql_query($sql);
 $row = mysql_fetch_row($result);
 $exam = $row[0];
@@ -63,9 +64,12 @@ while ($row1 = mysql_fetch_row($result))
     
     $sql = "SELECT * FROM session WHERE student=$id AND id < '$exam'";
     $result1 = mysql_query($sql);
-		
+
     $worksheet->setCellValueByColumnAndRow(11,$row,mysql_num_rows($result1));	
-    $result1 = mysql_query("SELECT * FROM session WHERE student=$id");
+    
+    $result1 = mysql_query("SELECT * FROM session WHERE student=$id AND id <'$sem_split'");
+    $worksheet->setCellValueByColumnAndRow(12,$row,mysql_num_rows($result1));
+    $result1 = mysql_query("SELECT * FROM session WHERE student=$id AND id >='$sem_split'");
     $worksheet->setCellValueByColumnAndRow(13,$row,mysql_num_rows($result1));
     $row++;
 }
