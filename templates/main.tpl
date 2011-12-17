@@ -1,6 +1,7 @@
 <html>
   <head>	
     <link rel="stylesheet" href="css/style.css" />
+    {block name=extrastyle}{/block}
     <title>{$title}</title>
     {block name=scripts}{/block}
   </head>

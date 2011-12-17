@@ -1,16 +1,10 @@
 <?php
 require_once('checkuser.php');
 require_once('connect.php');
-?>
-<html>
-  <head>	
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Sessions</title>
-  </head>
-  <body>
-    <div class="padded bodywrap">
-      <h1>SI Sessions</h1>
-<?php
+require 'libs/Smarty.class.php';
+
+$sessions = array();
+
 $db = db_connect();
 $stmt = $db->stmt_init();
 if ($stmt->prepare("SELECT distinct id FROM session ORDER BY id asc"))
@@ -19,19 +13,19 @@ if ($stmt->prepare("SELECT distinct id FROM session ORDER BY id asc"))
     $stmt->bind_result($date);
     while($stmt->fetch())
     {
-	echo("<a href='listsession.php?date=$date'>");
-	echo($date);
-	echo("</a>");
-	echo('<br />');
+	array_push($sessions,$date);
     }
     $stmt->close();
 }
 
 $db->close();
 
+$smarty = new Smarty;
+//$smarty->force_compile = true;
+//$smarty->debugging = true;
+//$smarty->caching = true;
+//$smarty->cache_lifetime = 120;
+$smarty->assign('title','Sessions');
+$smarty->assign('sessions',$sessions);
+$smarty->display('sessions.tpl');
 ?>
-<br />
-<a href="user.php">[back]</a> <a href="logout.php">[logout]</a>
-</div>
-</body>
-</html>

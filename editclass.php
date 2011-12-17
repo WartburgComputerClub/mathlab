@@ -1,6 +1,7 @@
 <?php
 require_once("checkuser.php");
 require_once("connect.php");
+require 'libs/Smarty.class.php';
 
 $prof = '';
 $department = '';
@@ -50,71 +51,23 @@ if ($stmt->prepare("SELECT prof,department,code,section,exam,halftime FROM cours
     $stmt->execute();
     $stmt->bind_result($prof,$department,$code,$section,$exam,$halftime);
     $stmt->fetch();
+    $stmt->close();
 }
 
-
-$stmt->close();
 $db->close();
+$smarty = new Smarty;
+//$smarty->force_compile = true;
+//$smarty->debugging = true;
+//$smarty->caching = true;
+//$smarty->cache_lifetime = 120;
+
+$smarty->assign('title','Class Editor');
+$smarty->assign('prof',$prof);
+$smarty->assign('department',$department);
+$smarty->assign('code',$code);
+$smarty->assign('section',$section);
+$smarty->assign('exam',$exam);
+$smarty->assign('halftime',$halftime);
+
+$smarty->display('editclass.tpl');
 ?>
-<html>
-  <head>
-    <link rel="stylesheet" href="css/style.css" />
-    <link type="text/css" rel="stylesheet" href="css/dark-hive/jquery-ui-1.8.16.custom.css" />
-    <style>
-      div.ui-datepicker{
-      font-size:10px;
-      }
-
-    </style>
-
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-	$('.datepicker').datepicker({
-	    //changeMonth: true,
-	    //changeYear: true,
-	    dateFormat: 'yy-mm-dd'
-	});
-    });
-    </script>
-    <title>Class Editor</title>
-  </head>
-  <body>
-    <div class="padded bodywrap">
-      <h1>Class Editor</h1>
-      <div class="content">
-	<form name="editclassform" method="post">
-	<table border="0" align="center">
-	  <tr>
-	    <td>Professor: </td>
-	    <td><input type="text" value='<?php echo $prof; ?>' name="prof" /></td>
-	  </tr>
-	  <tr>
-	    <td>Department: </td>
-	    <td><input type="text" name="department" value='<?php echo $department; ?>' /></td>
-	  </tr>
-	  <tr>
-	    <td>Class Code: </td>
-	    <td><input type="text" name="code" value='<?php echo $code; ?>' /></td>
-	  </tr>
-	  <tr>
-	    <td>Section: </td>
-	    <td><input type="text" name="section" value='<?php echo $section; ?>' /></td>
-	  </tr>
-	  <tr>
-	    <td>First Exam Date: </td>
-	    <td><input type="text" class="datepicker" name="exam" value='<?php echo $exam; ?>' /></td>
-	  </tr>
-	  <tr>
-	    <td>Second Seven Weeks Start</td>
-	    <td><input type="text" class="datepicker" name="halftime" value='<?php echo $halftime; ?>' /></td>
-	  <tr><td><input type="submit" value="submit" /></td><td></td></tr>
-	</table>
-
-	</form>
-      </div>
-      <a href="user.php">[Back]</a> <a href="logout.php">[Logout]</a>
-    </div>
-  </body>
-</html>
