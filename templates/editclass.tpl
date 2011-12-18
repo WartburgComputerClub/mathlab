@@ -43,11 +43,11 @@
 	    <td><input type="text" name="section" value='{$section}' /></td>
 	  </tr>
 	  <tr>
-	    <td>First Exam Date: </td>
+	    <td>First Exam: </td>
 	    <td><input type="text" class="datepicker" name="exam" value='{$exam}' /></td>
 	  </tr>
 	  <tr>
-	    <td>Second Seven Weeks Start</td>
+	    <td>Midterm: </td>
 	    <td><input type="text" class="datepicker" name="halftime" value='{$halftime}' /></td>
 	  <tr><td><input type="submit" value="submit" /></td><td></td></tr>
 	</table>
