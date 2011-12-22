@@ -10,7 +10,18 @@ $stmt = $db->stmt_init();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if (isset($_POST['id'])){
+if (isset($_POST['delete']))
+{
+    $id = $_POST['id'];
+    if ($stmt->prepare("DELETE FROM user WHERE id=?")){
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$stmt->close();
+    }
+    $db->close();
+    die();
+}
+else if (isset($_POST['id'])){
     $id = $_POST['id'];
     if ($stmt->prepare("UPDATE user SET username=?,password=? WHERE id=?"))
     {

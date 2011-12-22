@@ -6,11 +6,15 @@ function editUser()
 	    $('#pass').val('');
 	    $('#user').focus();
 	}
-
     });
 }
 $(document).ready(function(){
     $('#pass').focus();
+    $('#delete').click(function(e){
+	$('#response').html('<img src="images/spinner.gif"> &nbsp; Processing...').load('edituserproc.php',{id: $('#id').val(),delete: true,username: false,password: false},function(data){
+	    window.location = 'admin.php';
+	});
+    });
     $('#submit').click(function(e){
 	e.preventDefault();
 	if (($('#user').val() != '') && ($('#pass').val() != ''))

@@ -26,5 +26,5 @@
       <br /><br />
       <div id="response"></div>
       <br />
-      <a href="admin.php">[Back]</a> <a href="logout.php">[Logout]</a>
+      <a href="admin.php">[Back]</a> {if isset($user)}<a href="#" id="delete">[Delete]</a> {/if}<a href="logout.php">[Logout]</a>
 {/block}
