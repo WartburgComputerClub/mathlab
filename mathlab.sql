@@ -26,7 +26,7 @@ CREATE TABLE `course` (
   `id` int(11) NOT NULL,
   `department` varchar(2) DEFAULT NULL,
   `code` int(11) DEFAULT NULL,
-  `section` int(11) DEFAULT NULL,
+  `section` varchar(2) DEFAULT NULL,
   `exam` date DEFAULT NULL,
   `halftime` date NOT NULL,
   `prof` varchar(50) NOT NULL,
@@ -126,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-12-15 14:08:15
+-- Dump completed on 2011-12-22 17:34:37

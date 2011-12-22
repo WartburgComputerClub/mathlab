@@ -30,14 +30,14 @@ if (isset($_POST['prof']))
     {
 	if ($stmt->prepare("UPDATE course SET department=?,code=?,section=?,exam=?,halftime=?,prof=? WHERE id=?"))
 	{
-	    $stmt->bind_param('siisssi',$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['halftime'],$_POST['prof'],$_SESSION['user']);
+	    $stmt->bind_param('sissssi',$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['halftime'],$_POST['prof'],$_SESSION['user']);
 	    $stmt->execute();
 	}
     }else
     {
 	if ($stmt->prepare("INSERT INTO course (id,department,code,section,exam,halftime,prof) VALUES (?,?,?,?,?,?,?)"))
 	{
-	    $stmt->bind_param('isiisss',$_SESSION['user'],$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['halftime'],$_POST['prof']);
+	    $stmt->bind_param('isissss',$_SESSION['user'],$_POST['department'],$_POST['code'],$_POST['section'],$_POST['exam'],$_POST['halftime'],$_POST['prof']);
 	    $stmt->execute();
 
 	}
