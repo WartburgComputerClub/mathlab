@@ -39,7 +39,7 @@ else
       <td><input type="text" id="lastname" value='<?php echo $last; ?>' /></td>
     </tr>
     <tr>
-      <td>Interest Level: </td>
+      <td>Interest Level (1-5): </td>
       <td><input type="text" id="interest" value='<?php echo $interest; ?>' /></td>
     </tr>
     <tr>
@@ -47,7 +47,7 @@ else
       <td><input type="text" id="taken" value='<?php echo $taken; ?>' /></td>
     </tr>
     <tr>
-      <td>Future Plans: </td>
+      <td>Future Plans (A-F): </td>
       <td><input type="text" id="future" value='<?php echo $future; ?>' /></td>
     </tr>
   </table>

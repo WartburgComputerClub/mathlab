@@ -12,7 +12,39 @@ $password = $_POST['password'];
 
 if (isset($_POST['delete']))
 {
+    $stmt1 = $db->stmt_init();
+    $stmt2 = $db->stmt_init();
+
+    $sql = "SELECT id FROM student WHERE course=?";
+    $sql1 = "DELETE FROM session WHERE student=?";
+    $sql2 = "DELETE FROM student WHERE id=?";
+    
     $id = $_POST['id'];
+    // First delete orphaned sessions and students
+    if ($stmt->prepare($sql) && $stmt1->prepare($sql1) && $stmt2->prepare($sql2))
+    {
+	$stmt->bind_param('i',$id);
+	$stmt1->bind_param('i',$student_id);
+	$stmt2->bind_param('i',$student_id);
+	$stmt->bind_result($student_id);
+	$stmt->execute();
+	$stmt->store_result();
+	while($stmt->fetch())
+	{
+	    $stmt1->execute();
+	    $stmt2->execute();
+	}
+	$stmt->free_result();
+	$stmt1->close();
+	$stmt2->close();
+    }
+    // now delete orphaned course
+    if ($stmt->prepare("DELETE FROM course WHERE id=?"))
+    {
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+    }
+    // finally delete user
     if ($stmt->prepare("DELETE FROM user WHERE id=?")){
 	$stmt->bind_param('i',$id);
 	$stmt->execute();
