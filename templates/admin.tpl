@@ -1,6 +1,12 @@
 {extends file="main.tpl"}
 {block name=main}
-      <h1>Admin Page</h1>
-      
-      <a href="adduser.php">[Add User]</a> <a href="logout.php">[Logout]</a>
+      <h1>Users</h1>
+      {foreach from=$users item=user}
+      <a href="useradmin.php?user={$user}">
+      {$names[$user]}
+      </a>
+      <br />
+      {/foreach}
+      <br />
+      <a href="useradmin.php">[Add User]</a> <a href="logout.php">[Logout]</a>
 {/block}
