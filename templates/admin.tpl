@@ -3,7 +3,7 @@
       <h1>Users</h1>
       {foreach from=$users item=user}
       <a href="useradmin.php?user={$user}">
-      {$names[$user]}
+      {$names[$user]|escape}
       </a>
       <br />
       {/foreach}
