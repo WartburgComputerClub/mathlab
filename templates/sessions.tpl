@@ -8,5 +8,5 @@
 <br />
 {/foreach}
 <br />
-<a href="user.php">[back]</a> <a href="logout.php">[logout]</a>
+<a href="{$back_link}">[back]</a> <a href="logout.php">[logout]</a>
 {/block}

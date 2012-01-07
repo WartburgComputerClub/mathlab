@@ -26,6 +26,12 @@ $smarty = new Smarty;
 //$smarty->caching = true;
 //$smarty->cache_lifetime = 120;
 $smarty->assign('title','Sessions');
+if ($_SESSION['user'] == 'admin'){
+    $back_link = 'admin.php';
+}else{
+    $back_link = 'user.php';
+}
+$smarty->assign('back_link',$back_link);
 $smarty->assign('sessions',$sessions);
 $smarty->display('sessions.tpl');
 ?>
