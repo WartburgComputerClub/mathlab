@@ -6,7 +6,7 @@ $date = $_POST['date'];
 $db = db_connect();
 $stmt = $db->stmt_init();
 if ($_SESSION['user'] == 'admin'){
-    $sql = "SELECT student.id,firstname,lastname,course.department,course.code,course.section FROM student INNER JOIN session on (student.id=session.student) INNER JOIN course on (student.course=course.id) WHERE session.id=?";
+    $sql = "SELECT student.id,firstname,lastname,course.department,course.code,course.section FROM student INNER JOIN session on (student.id=session.student) LEFT JOIN course on (student.course=course.id) WHERE session.id=?";
 }else{
     $sql = "SELECT student.id,firstname,lastname FROM student INNER JOIN session on (student.id=session.student) WHERE session.id=? AND student.course=?";
 }
