@@ -7,9 +7,23 @@ $id = $_POST['id'];
 $db = db_connect();
 $stmt = $db->stmt_init();
 $stmt1 = $db->stmt_init();
-if ($stmt->prepare("SELECT id FROM student WHERE course=? AND id=?") && $stmt1->prepare("DELETE FROM session WHERE id=? AND student=?"))
+
+if ($_SESSION['user'] == 'admin')
 {
-    $stmt->bind_param('ii',$_SESSION['user'],$id);
+    // make sure student exists
+    $sql = "SELECT id FROM student WHERE id=?";
+}else{
+    $sql = "SELECT id FROM student WHERE course=? AND id=?";
+}
+
+if ($stmt->prepare($sql) && $stmt1->prepare("DELETE FROM session WHERE id=? AND student=?"))
+{
+    if ($_SESSION['user'] == 'admin'){
+	$stmt->bind_param('i',$id);
+    }
+    else{
+	$stmt->bind_param('ii',$_SESSION['user'],$id);
+    }
     $stmt1->bind_param('si',$date,$id);
     $stmt->execute();
     $stmt->store_result();

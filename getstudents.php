@@ -5,18 +5,34 @@ require_once('connect.php');
 $date = $_POST['date'];
 $db = db_connect();
 $stmt = $db->stmt_init();
-$sql = "SELECT student.id,firstname,lastname FROM student INNER JOIN session on (student.id=session.student) WHERE session.id=? AND student.course=?";
+if ($_SESSION['user'] == 'admin'){
+    $sql = "SELECT student.id,firstname,lastname,course.department,course.code,course.section FROM student INNER JOIN session on (student.id=session.student) LEFT JOIN course on (student.course=course.id) WHERE session.id=?";
+}else{
+    $sql = "SELECT student.id,firstname,lastname FROM student INNER JOIN session on (student.id=session.student) WHERE session.id=? AND student.course=?";
+}
 
 if ($stmt->prepare($sql))
 {
-    $stmt->bind_param('si',$date,$_SESSION['user']);
+    if ($_SESSION['user'] == 'admin'){
+	$stmt->bind_param('s',$date);
+    }else{
+	$stmt->bind_param('si',$date,$_SESSION['user']);
+    }
     $stmt->execute();
-    $stmt->bind_result($id,$first,$last);
+    if ($_SESSION['user'] == 'admin'){
+	$stmt->bind_result($id,$first,$last,$department,$code,$section);
+    }else{
+	$stmt->bind_result($id,$first,$last);
+    }
     while($stmt->fetch())
     {
 	$deleteStr = 'deleteStudent(' . $id . ')';
 	echo $first . ' ' . $last . ' ';
-	echo "<input type='button' value='delete' onclick=\"$deleteStr\" />";
+	if ($_SESSION['user'] == 'admin') {
+	    echo "($department $code $section)";
+	}else{
+	    echo "<input type='button' value='delete' onclick=\"$deleteStr\" />";
+	}
 	echo '<br />';
     }
 }

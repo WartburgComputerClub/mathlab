@@ -1,11 +1,12 @@
 <?php
+require_once('config.php');
 require_once('connect.php');
 if (!isset($_POST['username']) || !isset($_POST['password']))
   die("<font color='red'>Incorrect login!</font>");
 
 if ($_POST['username'] == 'admin')
 {
-    if ($_POST['password'] == 'test')
+    if ($_POST['password'] == Auth::$admin)
     {
 	session_start();
 	$_SESSION['user'] = 'admin';
@@ -15,7 +16,7 @@ if ($_POST['username'] == 'admin')
 	echo("<font color='red'>Incorrect login!</font>");
 }else if ($_POST['username'] == 'signin')
 {
-    if ($_POST['password'] == 'test')
+    if ($_POST['password'] == Auth::$signin || $_POST['password'] == Auth::$admin)
     {
 	session_start();
 	$_SESSION['user'] = 'signin';

@@ -8,5 +8,5 @@
       <br />
       {/foreach}
       <br />
-      <a href="useradmin.php">[Add User]</a> <a href="logout.php">[Logout]</a>
+      <a href="sessions.php">[Sessions]</a> <a href="useradmin.php">[Add User]</a> <a href="logout.php">[Logout]</a>
 {/block}
