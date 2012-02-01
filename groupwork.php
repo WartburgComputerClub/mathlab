@@ -9,13 +9,13 @@ $db = db_connect();
 $stmt = $db->stmt_init();
 $problems = array();
 
-if ($stmt->prepare("SELECT question,answer FROM problem"))
+if ($stmt->prepare("SELECT question,answer,id FROM problem"))
 {
     $stmt->execute();
-    $stmt->bind_result($question,$answer);
+    $stmt->bind_result($question,$answer,$id);
     while($stmt->fetch())
     {
-	array_push($problems,array('question'=>$question,'answer'=>$answer));
+	array_push($problems,array('question'=>$question,'answer'=>$answer,'key'=>$id));
     }
     $stmt->close();
 }
