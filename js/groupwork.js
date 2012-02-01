@@ -64,11 +64,13 @@ function saveQuestion(id)
     	MathJax.Hub.Queue(["Typeset",MathJax.Hub,answerID.substring(1)]);});
     var deleteButton = '#delete-' + id;
     $(deleteButton).attr('value','delete');
+    $(deleteButton).attr('onclick','');
     $(deleteButton).unbind('click').click(function(){
 	deleteQuestion(id);
     });
     var modifyButton = '#modify-' + id;
     $(modifyButton).attr('value','modify');
+    $(modifyButton).attr('onclick','');
     $(modifyButton).unbind('click').click(function(){
 	modifyQuestion(id);
     });
