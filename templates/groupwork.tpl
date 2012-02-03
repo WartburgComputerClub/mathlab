@@ -5,7 +5,8 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/groupwork.js"></script>
 {/block}
-{block name=main}
+{block name=body}
+<div class="padded leftwrap">       
       <h1>Group Work Problems</h1>
       <hr />
       <div id="questions">
@@ -33,4 +34,5 @@
       <br />
       <br />
       <a href="user.php">[Back]</a> <a href="logout.php">[Logout]</a>
+</div>
 {/block}

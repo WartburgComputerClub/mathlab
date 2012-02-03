@@ -6,8 +6,10 @@
     {block name=scripts}{/block}
   </head>
   <body>
+    {block name=body}
     <div class="padded bodywrap">
     {block name=main}{/block}
     </div>
+    {/block}
   </body>
 </html>
