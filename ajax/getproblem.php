@@ -30,7 +30,7 @@ if ($_POST['question'] == 1) {
     }
     if ($_POST['edit'] == 1) {
 	$id = 'questiontext-' . $_POST['id'];
-	echo "<textarea id='$id' row='15' cols='40'>";
+	echo "<textarea id='$id' rows='15' cols='60'>";
 	echo $question;
 	echo '</textarea>';
     } else {
@@ -46,7 +46,7 @@ if ($_POST['question'] == 1) {
     }
     if ($_POST['edit'] == 1) {
 	$id = "answertext-" . $_POST['id'];
-	echo "<textarea id='$id' row'15' cols='40'>";
+	echo "<textarea id='$id' rows='15' cols='60'>";
 	echo $answer;
 	echo '</textarea>';
     } else {
