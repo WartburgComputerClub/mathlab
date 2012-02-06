@@ -7,7 +7,7 @@
 {/block}
 {block name=body}
 <div class="padded leftwrap">       
-      <h1>Group Work Problems</h1>
+      <h1>Group Work Problems (Page {$page})</h1>
       <hr />
       <div id="questions">
       {foreach from=$problems item=problem}
@@ -33,6 +33,6 @@
       <input type="button" id="add" value="add question" onclick="addQuestion()" />
       <br />
       <br />
-      <a href="user.php">[Back]</a> <a href="logout.php">[Logout]</a>
+      <a href="{$prev}">[Prev]</a> <a href="user.php">[Back]</a> <a href="logout.php">[Logout]</a> <a href="{$next}">[Next]</a> 
 </div>
 {/block}
