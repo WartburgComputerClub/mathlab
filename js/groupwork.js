@@ -70,10 +70,10 @@ function cancelEdit(id,type)
 	$(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':0}, function() {
     	    MathJax.Hub.Queue(["Typeset",MathJax.Hub,answerID.substring(1)]);
 	});
-	var modifyButton = '#modifyAnser-' + id;
-	$(modifyButton).attr('value','modify question');
+	var modifyButton = '#modifyAnswer-' + id;
+	$(modifyButton).attr('value','modify answer');
 	$(modifyButton).unbind('click').click(function(){
-	    modifyQuestion(id);
+	    modifyAnswer(id);
 	});
 	var modifyQuestionButton = '#modifyQuestion-' + id;
 	$(modifyQuestionButton).show();
@@ -94,12 +94,11 @@ function saveQuestion(id,type)
 	});
 	var modifyButton = '#modifyQuestion-' + id;
 	$(modifyButton).attr('value','modify question');
-	$(modifyButton).attr('onclick','');
 	$(modifyButton).unbind('click').click(function(){
 	    modifyQuestion(id);
 	});
 	var modifyAnswerButton = '#modifyAnswer-' + id;
-	$(modifyAnswerButton).show();	    
+	$(modifyAnswerButton).show();
     } else { // answer
 	var answer = $('#answertext-'+id).val();
 	var answerID = '#answer-' + id;
@@ -108,16 +107,14 @@ function saveQuestion(id,type)
 	});
 	var modifyButton = '#modifyAnswer-' + id;
 	$(modifyButton).attr('value','modify answer');
-	$(modifyButton).attr('onclick','');
 	$(modifyButton).unbind('click').click(function(){
 	    modifyAnswer(id);
 	});
-	var modifyQuestion = '#modifyQuestion-' + id;
-	$(modifyQuestion).show();
+	var modifyQuestionButton = '#modifyQuestion-' + id;
+	$(modifyQuestionButton).show();
     }
     var deleteButton = '#delete-' + id;
     $(deleteButton).attr('value','delete');
-    $(deleteButton).attr('onclick','');
     $(deleteButton).unbind('click').click(function(){
 	deleteQuestion(id);
     });
