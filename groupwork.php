@@ -14,7 +14,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $limit = ($page-1) * 2;
-$limit = $limit . ',' . ($limit + 2);
+$limit = $limit . ',2';
 $sql = "SELECT question,answer,id FROM problem LIMIT " . $limit;
 if ($stmt->prepare($sql))
 {
