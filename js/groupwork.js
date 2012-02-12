@@ -1,3 +1,42 @@
+function modifyQuestion(id) 
+{
+    var questionID = '#question-' + id;
+    $(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':1,'question':1});
+    
+    var deleteButton = '#delete-' + id;
+    $(deleteButton).attr("value","cancel");
+    $(deleteButton).attr("onclick","");
+    $(deleteButton).unbind('click').click(function(){
+	cancelEdit(id,0);
+    });
+    var modifyButton = '#modifyQuestion-' + id;
+    $(modifyButton).attr('value','save');
+    $(modifyButton).attr('onclick','');
+    $(modifyButton).unbind('click').click(function(){
+	saveQuestion(id,0);
+    });
+    var modifyAnswerButton = '#modifyAnswer-' + id;
+    $(modifyAnswerButton).hide();
+}
+function modifyAnswer(id) 
+{
+    var answerID = '#answer-' + id;
+    $(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':1,'question':0});
+    var deleteButton = '#delete-' + id;
+    $(deleteButton).attr("value","cancel");
+    $(deleteButton).attr("onclick","");
+    $(deleteButton).unbind('click').click(function(){
+	cancelEdit(id,1);
+    });
+    var modifyButton = '#modifyAnswer-' + id;
+    $(modifyButton).attr('value','save');
+    $(modifyButton).attr('onclick','');
+    $(modifyButton).unbind('click').click(function(){
+	saveQuestion(id,1);
+    });
+    var modifyQuestionButton = '#modifyQuestion-' + id;
+    $(modifyQuestionButton).hide();
+}
 function addQuestion()
 {
     $.ajax({
@@ -13,66 +52,74 @@ function deleteQuestion(id)
 	$('#problem-' + id).remove();
     });
 }
-function cancelEdit(id)
+function cancelEdit(id,type)
 {
-    var questionID = '#question-' + id;
-    $(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':1},function() {
+    if (type == 0) { // question
+	var questionID = '#question-' + id;
+	$(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':1},function() {
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub,questionID.substring(1)]);});
-    var answerID = '#answer-' + id;
-    $(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':0}, function() {
-    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,answerID.substring(1)]);});
+	var modifyButton = '#modifyQuestion-' + id;
+	$(modifyButton).attr('value','modify question');
+	$(modifyButton).unbind('click').click(function(){
+	    modifyQuestion(id);
+	});
+	var modifyAnswerButton = '#modifyAnswer-' + id;
+	$(modifyAnswerButton).show();
+    } else { // answer
+	var answerID = '#answer-' + id;
+	$(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':0}, function() {
+    	    MathJax.Hub.Queue(["Typeset",MathJax.Hub,answerID.substring(1)]);
+	});
+	var modifyButton = '#modifyAnser-' + id;
+	$(modifyButton).attr('value','modify question');
+	$(modifyButton).unbind('click').click(function(){
+	    modifyQuestion(id);
+	});
+	var modifyQuestionButton = '#modifyQuestion-' + id;
+	$(modifyQuestionButton).show();
+    }
     var deleteButton = '#delete-' + id;
     $(deleteButton).attr('value','delete');
     $(deleteButton).unbind('click').click(function(){
 	deleteQuestion(id);
     });
-    var modifyButton = '#modify-' + id;
-    $(modifyButton).attr('value','modify');
-    $(modifyButton).unbind('click').click(function(){
-	modifyQuestion(id);
-    });
 }
-function modifyQuestion(id)
+function saveQuestion(id,type)
 {
-    var questionID = '#question-' + id;
-    $(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':1,'question':1});
-    var answerID = '#answer-' + id;
-    $(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':1,'question':0});
-    var deleteButton = '#delete-' + id;
-    $(deleteButton).attr("value","cancel");
-    $(deleteButton).attr("onclick","");
-    $(deleteButton).unbind('click').click(function(){
-	cancelEdit(id);
-    });
-    var modifyButton = '#modify-' + id;
-    $(modifyButton).attr('value','save');
-    $(modifyButton).attr('onclick','');
-    $(modifyButton).unbind('click').click(function(){
-	saveQuestion(id);
-    });
-}
-function saveQuestion(id)
-{
-    var question = $('#questiontext-' + id).val();
-    var answer = $('#answertext-'+id).val();
-    
-    var questionID = '#question-' + id;
-    $(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':1,'value':question},function() {
-	MathJax.Hub.Queue(["Typeset",MathJax.Hub,questionID.substring(1)]);});
-    var answerID = '#answer-' + id;
-    $(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':0,'value':answer}, function() {
-    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,answerID.substring(1)]);});
+    if (type == 0) { // question
+	var question = $('#questiontext-' + id).val();
+	var questionID = '#question-' + id;
+	$(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':1,'value':question},function() {
+	    MathJax.Hub.Queue(["Typeset",MathJax.Hub,questionID.substring(1)]);
+	});
+	var modifyButton = '#modifyQuestion-' + id;
+	$(modifyButton).attr('value','modify question');
+	$(modifyButton).attr('onclick','');
+	$(modifyButton).unbind('click').click(function(){
+	    modifyQuestion(id);
+	});
+	var modifyAnswerButton = '#modifyAnswer-' + id;
+	$(modifyAnswerButton).show();	    
+    } else { // answer
+	var answer = $('#answertext-'+id).val();
+	var answerID = '#answer-' + id;
+	$(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':0,'value':answer}, function() {
+    	    MathJax.Hub.Queue(["Typeset",MathJax.Hub,answerID.substring(1)]);
+	});
+	var modifyButton = '#modifyAnswer-' + id;
+	$(modifyButton).attr('value','modify answer');
+	$(modifyButton).attr('onclick','');
+	$(modifyButton).unbind('click').click(function(){
+	    modifyAnswer(id);
+	});
+	var modifyQuestion = '#modifyQuestion-' + id;
+	$(modifyQuestion).show();
+    }
     var deleteButton = '#delete-' + id;
     $(deleteButton).attr('value','delete');
     $(deleteButton).attr('onclick','');
     $(deleteButton).unbind('click').click(function(){
 	deleteQuestion(id);
-    });
-    var modifyButton = '#modify-' + id;
-    $(modifyButton).attr('value','modify');
-    $(modifyButton).attr('onclick','');
-    $(modifyButton).unbind('click').click(function(){
-	modifyQuestion(id);
     });
 }
 $(document).ready(function(){

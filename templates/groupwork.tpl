@@ -24,7 +24,8 @@
       </div>
       <div id="edit-{$problem['key']}"></div>
       <input type="button" id="delete-{$problem['key']}" value="delete" onclick="deleteQuestion({$problem['key']})" />
-      <input type="button" id="modify-{$problem['key']}" value="modify" onclick="modifyQuestion({$problem['key']})" />
+      <input type="button" id="modifyQuestion-{$problem['key']}" value="modify question" onclick="modifyQuestion({$problem['key']})" />
+      <input type="button" id="modifyAnswer-{$problem['key']}" value="modify answer" onclick="modifyAnswer({$problem['key']})" />
       <hr />
       <br />
       </div>

@@ -23,7 +23,8 @@ if ($stmt->prepare("INSERT INTO problem (question,answer) VALUES ('','')"))
     echo "</textarea>";
     echo '</div>';
     echo "<input type='button' id='delete-$id' value='cancel' onclick='cancelEdit($id)' />";
-    echo "<input type='button' id='modify-$id' value='save' onclick='saveQuestion($id)' />";
+    echo "<input type='button' id='modifyQuestion-$id' value='save question' onclick='saveQuestion($id,2)' />";
+    echo "<input type='button' id='modifyAnswer-$id' value='save answer' onclick='saveQuestion($id,3)' />";
     echo '<hr /><br /></div>';
 }
 ?>
