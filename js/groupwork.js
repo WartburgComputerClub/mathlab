@@ -86,7 +86,7 @@ function cancelEdit(id,type)
 }
 function saveQuestion(id,type)
 {
-    if (type == 0) { // question
+    if (type == 0 || type == 2) { // question
 	var question = $('#questiontext-' + id).val();
 	var questionID = '#question-' + id;
 	$(questionID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':1,'value':question},function() {
@@ -94,12 +94,15 @@ function saveQuestion(id,type)
 	});
 	var modifyButton = '#modifyQuestion-' + id;
 	$(modifyButton).attr('value','modify question');
+	if (type == 2) {
+	    $(modifyButton).attr("onclick","");
+	}
 	$(modifyButton).unbind('click').click(function(){
 	    modifyQuestion(id);
 	});
 	var modifyAnswerButton = '#modifyAnswer-' + id;
 	$(modifyAnswerButton).show();
-    } else { // answer
+    } else if (type == 1 || type == 3) { // answer
 	var answer = $('#answertext-'+id).val();
 	var answerID = '#answer-' + id;
 	$(answerID).html('<img src="images/spinner.gif"> &nbsp; Processing...').load('ajax/getproblem.php',{'id':id,'edit':0,'question':0,'value':answer}, function() {
@@ -107,6 +110,9 @@ function saveQuestion(id,type)
 	});
 	var modifyButton = '#modifyAnswer-' + id;
 	$(modifyButton).attr('value','modify answer');
+	if (type == 3) {
+	    $(modifyButton).attr("onclick","");
+	}
 	$(modifyButton).unbind('click').click(function(){
 	    modifyAnswer(id);
 	});
