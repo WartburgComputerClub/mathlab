@@ -26,6 +26,9 @@
       <input type="button" id="delete-{$problem['key']}" value="delete" onclick="deleteQuestion({$problem['key']})" />
       <input type="button" id="modifyQuestion-{$problem['key']}" value="modify question" onclick="modifyQuestion({$problem['key']})" />
       <input type="button" id="modifyAnswer-{$problem['key']}" value="modify answer" onclick="modifyAnswer({$problem['key']})" />
+      <br />
+      <input type="text" name="tags" id="tags-{$problem['key']}" />
+      <input type="button" value="update tags" id="modifyTags-{$problem['key']}" />
       <hr />
       <br />
       </div>
